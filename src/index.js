@@ -1,15 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import NewColorForm from './routes/NewColorForm';
 import reportWebVitals from './reportWebVitals';
+import { render } from "react-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
+import Color from './components/Color';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+const rootElement = document.getElementById("root");
+render(
+  <BrowserRouter>
+  <Routes>
+    <Route  path="/" element={<App/>} />
+    <Route  path="/newcolor" element={<NewColorForm/>} />
+    <Route path="/:color" element={<Color />} />
+    <Route path="*" element={<Navigate to="/" replace />}
+    />
+  </Routes>
+  </BrowserRouter>,
+  rootElement);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
